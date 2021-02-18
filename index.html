@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+    <title>Employee Managment</title>
+  </head>
+  <body data-ng-app="appEmp">
+    
+    <!-- Header Started -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Employee Data Handling</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+              <li class="nav-item">
+                <a class="nav-link active" href="#"> <i class="fas fas-2x fa-eye"></i> View Employee Details</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="#"> <i class="fas fas-2x fa-plus-square"></i> Create New Employee</a>
+              </li>
+             
+             
+            </ul>
+           
+          </div>
+        </div>
+      </nav>
+
+    <!-- Header Ended -->
+
+
+
+      <!-- Main Page Started  -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6" data-ng-controller="viewData">
+                       
+                        <br/>
+                        <h1>Employee Data List</h1>
+                        <br/>
+                        <br/>
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Employee Name</th>
+                                <th scope="col">Employee Salary</th>
+                                <th scope="col">Employee Age</th>
+                                <th scope="col">Profile Image (Link)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+
+                              <tr ng-repeat="x in data">
+                                <th scope="row">{{x.id}}</th>
+                                <td>{{x.employee_name}}</td>
+                                <td>{{x.employee_salary | currency : '&#8377; ' :3}}</td>
+                                <td>{{x.employee_age}}</td>
+                                <td>{{x.profile_image}}</td>
+                              </tr>
+                             
+                            </tbody>
+                          </table>
+                    </div>
+
+                    <div class="col-md-6" data-ng-controller="addData">
+
+                        <br/>
+                        <h1>Add Employee</h1>
+                        <br/>
+                        <br/>
+
+                        <form name="empData" >
+                            
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Name</label>
+                                <input type="text" name="eName" class="form-control" data-ng-model="user.name" /> 
+                                <span data-ng-show="empData.eName.$touched" style="color: red;" >* The name is required.</span>                              
+                              </div>
+                              <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Salary</label>
+                                <input type="text" name="eSalary" class="form-control" data-ng-model="user.salary" /> 
+                                <span data-ng-show="empData.eSalary.$touched" style="color: red;" >* The Salary is required.</span>                              
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Age</label>
+                                <input type="text" name="eAge" class="form-control" data-ng-model="user.age" />   
+                                <span data-ng-show="empData.eAge.$touched" style="color: red;" >* The Age is required.</span>                            
+                              </div>
+
+                              <br/>
+
+                              {{user}}
+
+                              <span class="badge badge-pill badge-success">{{msg}}</span>
+                              <span class="badge badge-pill badge-success">{{statusval}}</span>
+                              <span class="badge badge-pill badge-success">{{statustext}}</span>
+                              <span class="badge badge-pill badge-success">{{headers}}</span>
+                            
+                              <br/><br/>
+                            <button  class="btn btn-danger btn-block" data-ng-click="reset()"  >Reset</button>  
+                            <button type="submit" class="btn btn-dark btn-block" ng-click="postdata(user)" >Submit</button>
+                          </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+    <!-- Main Page Ended  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <script src="js/script.js"></script>
+
+ 
+
+
+
+  </body>
+</html>
